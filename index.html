@@ -152,20 +152,43 @@
 
   /* ---------- NEGÓCIO ---------- */
   .deal{
-    background:
-      linear-gradient(135deg,rgba(255,106,0,.14),transparent 55%),
-      var(--bg-2);
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden;
+    background:var(--bg);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:0;overflow:hidden;
   }
-  .deal::before{content:"";position:absolute;inset:0;opacity:.4;
-    background-image:repeating-linear-gradient(45deg,rgba(255,106,0,.06) 0 16px,transparent 16px 32px)}
-  .deal .container{position:relative;z-index:2}
-  .deal-inner{max-width:760px}
-  .deal ul{list-style:none;margin:30px 0 36px;display:grid;gap:16px}
-  .deal li{display:flex;gap:14px;align-items:flex-start;font-size:1.1rem;color:var(--text)}
+  .deal-split{display:grid;grid-template-columns:1fr 1fr;min-height:580px}
+  .deal-text{
+    padding:72px 56px;display:flex;flex-direction:column;justify-content:center;
+    background:var(--bg);position:relative;
+  }
+  .deal-text::after{
+    content:"";position:absolute;top:0;right:0;width:1px;height:100%;
+    background:var(--line);
+  }
+  .deal-text .kicker{margin-bottom:16px}
+  .deal-text h2{font-size:clamp(2rem,3.5vw,2.8rem);margin-bottom:16px;max-width:14ch}
+  .deal-text h2 span{color:var(--orange)}
+  .deal-text .sub-desc{color:var(--muted);font-size:1.05rem;margin-bottom:28px;max-width:44ch}
+  .deal ul{list-style:none;margin:0 0 30px;display:grid;gap:16px}
+  .deal li{display:flex;gap:14px;align-items:flex-start;font-size:1.05rem;color:var(--text)}
   .deal li b{color:var(--orange)}
-  .deal li .chk{color:#111;background:var(--orange);width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex-shrink:0;font-weight:700;font-size:.9rem;margin-top:3px}
-  .deal .highlight{font-family:'Oswald';font-size:1.3rem;color:var(--white);margin-bottom:8px}
+  .deal li .chk{color:#111;background:var(--orange);width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex-shrink:0;font-weight:700;font-size:.9rem;margin-top:2px}
+  .deal-tagline{font-family:'Oswald',sans-serif;font-size:1.2rem;color:var(--white);margin-bottom:6px;line-height:1.4}
+  .deal-tagline span{color:var(--orange)}
+  .deal-small{color:var(--muted);font-size:.95rem;margin-bottom:32px}
+  .deal-img{position:relative;overflow:hidden}
+  .deal-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .deal-badges{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);
+  }
+  .deal-badge{
+    padding:28px 24px;text-align:center;border-right:1px solid var(--line);
+  }
+  .deal-badge:last-child{border-right:none}
+  .deal-badge .b-icon{font-size:1.8rem;margin-bottom:10px}
+  .deal-badge h4{font-size:.9rem;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+  .deal-badge p{font-size:.85rem;color:var(--muted);line-height:1.4}
 
   /* ---------- POR QUE ---------- */
   .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -241,6 +264,12 @@
     .about-grid{grid-template-columns:1fr;gap:40px}
     .services-grid,.why-grid,.testi-grid{grid-template-columns:1fr 1fr}
     .footer-grid{grid-template-columns:1fr;gap:32px}
+    .deal-split{grid-template-columns:1fr}
+    .deal-img{height:320px}
+    .deal-badges{grid-template-columns:1fr 1fr}
+    .deal-badge{border-bottom:1px solid var(--line)}
+    .deal-badge:nth-child(2){border-right:none}
+    .deal-badge:nth-child(3),.deal-badge:nth-child(4){border-bottom:none}
   }
   @media(max-width:640px){
     .nav-links{
@@ -256,6 +285,8 @@
     .hero{padding:130px 0 80px}
     .section-pad{padding:70px 0}
     .trust-bar{gap:16px}
+    .deal-text{padding:48px 28px}
+    .deal-badges{grid-template-columns:1fr 1fr}
   }
 </style>
 </head>
@@ -377,20 +408,45 @@
 </section>
 
 <!-- ============ COMPRA E VENDA ============ -->
-<section class="deal section-pad" id="negocio">
-  <div class="container">
-    <div class="deal-inner reveal">
+<section class="deal" id="negocio">
+  <div class="deal-split">
+    <div class="deal-text reveal">
       <div class="kicker">Compra • Venda • Troca</div>
-      <h2 class="section-title">Aqui, todo negócio tem conversa.</h2>
-      <p style="color:var(--muted);font-size:1.1rem">Essa é a nossa praia. A Jacques Furgões não é só fábrica — é também o lugar onde o negócio acontece.</p>
+      <h2>Aqui, todo negócio<br><span>tem conversa.</span></h2>
+      <p class="sub-desc">Essa é a nossa praia. A Jacques Furgões não é só fábrica — é também o lugar onde o negócio acontece.</p>
       <ul>
         <li><span class="chk">✓</span><div>Tem um <b>baú ou furgão quebrado</b> parado te dando prejuízo? <b>A gente compra.</b></div></li>
         <li><span class="chk">✓</span><div>Quer <b>trocar</b> o seu velho por um reformado? <b>Bora negociar.</b></div></li>
         <li><span class="chk">✓</span><div>Tá procurando um <b>furgão pra comprar</b> com preço justo? <b>Fala com a gente.</b></div></li>
       </ul>
-      <p class="highlight">Se tem rodas e tem negócio, senta que a conversa é boa.</p>
-      <p style="color:var(--muted);margin-bottom:34px">Você sai daqui satisfeito — ou nem fecha.</p>
-      <a href="https://wa.me/5500000000000?text=Tenho%20um%20neg%C3%B3cio%20pra%20propor" target="_blank" rel="noopener" class="btn btn-primary">Tenho um negócio pra propor →</a>
+      <p class="deal-tagline">Se tem rodas e tem negócio,<br><span>senta que a conversa é boa.</span></p>
+      <p class="deal-small">Você sai daqui satisfeito — ou nem fecha.</p>
+      <a href="https://wa.me/5500000000000?text=Tenho%20um%20neg%C3%B3cio%20pra%20propor" target="_blank" rel="noopener" class="btn btn-primary">&#x1F4AC; Quero negociar agora</a>
+    </div>
+    <div class="deal-img">
+      <img src="img/antes-depois.jpg" alt="Antes e depois da reforma Jacques Furgões">
+    </div>
+  </div>
+  <div class="deal-badges">
+    <div class="deal-badge">
+      <div class="b-icon">💰</div>
+      <h4>A gente compra</h4>
+      <p>Compramos baús e furgões parados, quebrados ou usados.</p>
+    </div>
+    <div class="deal-badge">
+      <div class="b-icon">🔄</div>
+      <h4>Troca com vantagem</h4>
+      <p>Seu usado pode valer na troca por um reformado.</p>
+    </div>
+    <div class="deal-badge">
+      <div class="b-icon">🤝</div>
+      <h4>Negociação justa</h4>
+      <p>Preço justo, negociação transparente e sem enrolação.</p>
+    </div>
+    <div class="deal-badge">
+      <div class="b-icon">🛡️</div>
+      <h4>Segurança total</h4>
+      <p>Veículos revisados e com garantia de procedência.</p>
     </div>
   </div>
 </section>
